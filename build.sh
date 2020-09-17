@@ -50,4 +50,5 @@ mformat -i fat.img -v test -F ::
 mmd -i fat.img ::/EFI
 mmd -i fat.img ::/EFI/BOOT
 mcopy -i fat.img main.efi ::/EFI/BOOT/BOOTX64.EFI
+mcopy -i fat.img config.conf ::/EFI/BOOT/config.conf
 qemu-system-x86_64 -cpu qemu64 -bios /usr/share/ovmf/OVMF.fd -drive file=fat.img,if=ide,format=raw -net none

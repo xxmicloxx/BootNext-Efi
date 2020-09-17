@@ -229,8 +229,6 @@ run_file(CONST CHAR16 *InPath)
     EFI_DEVICE_PATH *ShellDevicePath = FileDevicePath(DevHandle, (CHAR16 *) Path);
     
     Print(L"Trying to load...\n");
-    Status = uefi_call_wrapper(BS->Stall, 1, 500000);
-    NOTIFY_ERROR(Status);
     
     EFI_HANDLE LoadedImageHandle;
     Status = uefi_call_wrapper(BS->LoadImage, 6, FALSE, SelfImageHandle, ShellDevicePath, NULL, 0, &LoadedImageHandle);
@@ -239,8 +237,6 @@ run_file(CONST CHAR16 *InPath)
     Print(L"Loaded successfully!\n");
     
     Print(L"Chainloading...\n");
-    Status = uefi_call_wrapper(BS->Stall, 1, 500000);
-    NOTIFY_ERROR(Status);
     uninit_lib();
     Status = uefi_call_wrapper(BS->StartImage, 3, LoadedImageHandle, NULL, NULL);
     PRINT_ERROR(Status, L"while starting EFI image");

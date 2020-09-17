@@ -81,9 +81,6 @@ efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     Status = load_config();
     WAIT_ERROR(Status);
     
-    Status = uefi_call_wrapper(BS->Stall, 1, 1000000);
-    NOTIFY_WAIT_ERROR(Status);
-    
     CHAR16 *TargetFile;
     Print(L"Loading target file...\n");
     TargetFile = find_target_file();
