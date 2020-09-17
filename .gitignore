@@ -1,0 +1,4 @@
+*.o
+*.efi
+*.so
+fat.img
